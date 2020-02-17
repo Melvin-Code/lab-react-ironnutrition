@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 
 class FoodBox extends Component {
+  handleQuantityChange = (e) => {
+    console.log(e.target.value)
+    this.setState( { [e.target.name] : e.target.value } )
+ }
     render() {
         return ( 
             <div className="box">
   <article className="media">
     <div className="media-left">
       <figure className="image is-64x64">
-        <img src={this.props.image} />
+        <img src={this.props.image} alt={this.props.name} />
       </figure>
     </div>
     <div className="media-content">
@@ -21,10 +25,11 @@ class FoodBox extends Component {
     <div className="media-right">
       <div className="field has-addons">
         <div className="control">
-          <input
+          <input contenteditable="true"
             className="input"
             type="number" 
-            value="1"
+            name='amount'
+          onChange={this.handleQuantityChange}
           />
         </div>
         <div className="control">
